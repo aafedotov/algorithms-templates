@@ -1,4 +1,24 @@
+def main():
 
+    n = int(input())
+    values = list(map(int, input().split()))
+    result = 0
+    if n == 1:
+        result += 1
+    else:
+        if values[n - 1] > values[n - 2]:
+            result += 1
+        if values[0] > values[1]:
+            result += 1
+        for i in range(1, n - 1):
+            if values[i] > values[i - 1] and values[i] > values[i + 1]:
+                result += 1
+    print(result)
+
+
+if __name__ == '__main__':
+
+    main()
 
 # "Соседи"
 # def main():
