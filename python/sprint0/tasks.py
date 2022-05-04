@@ -1,5 +1,36 @@
 
 
+# "Соседи"
+# def main():
+#
+#     n = int(input())
+#     m = int(input())
+#     matrix = []
+#     for i in range(n):
+#         row = list(map(int, input().split()))
+#         matrix.append(row)
+#     row = int(input())
+#     col = int(input())
+#
+#     result = []
+#
+#     if col < m - 1:
+#         result.append(matrix[row][col+1])
+#     if col > 0:
+#         result.append(matrix[row][col-1])
+#     if row > 0:
+#         result.append(matrix[row-1][col])
+#     if row < n - 1:
+#         result.append(matrix[row+1][col])
+#
+#     result.sort()
+#     print(' '.join(map(str, result)))
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
+
 
 # "Чётные и нечётные числа"
 
