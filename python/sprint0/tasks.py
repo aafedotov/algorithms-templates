@@ -1,4 +1,148 @@
+# "Лишняя буква"
 
+# def main():
+#
+#     s1 = input()
+#     s2 = input()
+#     for char in s1:
+#         s2 = s2.replace(char, '', 1)
+#     print(s2)
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
+
+
+# "Списочная форма"
+
+# def main():
+#
+#     n = int(input())
+#     a = int(input().replace(' ', ''))
+#
+#     b = int(input())
+#     result = str(a + b)
+#     for char in result:
+#         print(f'{char} ')
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
+
+# "Факторизация"
+
+# def main():
+#
+#     n = int(input())
+#     # simple = []
+#     # not_simple = []
+#     # for i in range(2, n + 1):
+#     #     if i not in not_simple:
+#     #         simple.append(i)
+#     #     not_simple += [number for number in range(i * i, n + 1, i)]
+#
+#     remainder = n
+#     i = 2
+#     deviders = []
+#
+#     while i * i <= n:
+#         if remainder % i == 0:
+#             deviders.append(i)
+#             remainder = remainder / i
+#         else:
+#             i += 1
+#     if remainder > 1:
+#         deviders.append(int(remainder))
+#     print(' '.join(map(str, deviders)))
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
+
+
+# "Степень четырех"
+
+# import math
+#
+#
+# def main():
+#
+#     number = int(input())
+#     log_4 = math.log(number, 4)
+#     result = int(log_4) == log_4
+#     print(result)
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
+
+
+# "Двоичная система"
+
+# def main():
+#
+#     a = list(map(int, list(input())))
+#     b = list(map(int, list(input())))
+#     dif = len(a) - len(b)
+#     if dif > 0:
+#         b = [0] * dif + b
+#     if dif < 0:
+#         a = [0] * abs(dif) + a
+#     a.reverse()
+#     b.reverse()
+#     overflow = 0
+#     c = []
+#     for i in range(0, len(a)):
+#         if overflow == 0:
+#             if a[i] + b[i] == 0:
+#                 c.append(0)
+#             elif a[i] + b[i] == 1:
+#                 c.append(1)
+#             else:
+#                 c.append(0)
+#                 overflow = 1
+#         else:
+#             if a[i] + b[i] == 0:
+#                 c.append(1)
+#                 overflow = 0
+#             elif a[i] + b[i] == 1:
+#                 c.append(0)
+#                 overflow = 1
+#             else:
+#                 c.append(1)
+#                 overflow = 1
+#     if overflow == 1:
+#         c.append(1)
+#     c.reverse()
+#     print(''.join(map(str, c)))
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
+
+
+# "Работа из дома"
+
+# def main():
+#
+#     number = int(input())
+#     result = ''
+#     current_remainder = number
+#     while current_remainder >= 2:
+#         result += str(current_remainder % 2)
+#         current_remainder = current_remainder // 2
+#     result += str(current_remainder)
+#     print(result[::-1])
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
 
 
 # "Палиндром"
