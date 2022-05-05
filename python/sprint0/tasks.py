@@ -1,24 +1,70 @@
-def main():
-
-    n = int(input())
-    values = list(map(int, input().split()))
-    result = 0
-    if n == 1:
-        result += 1
-    else:
-        if values[n - 1] > values[n - 2]:
-            result += 1
-        if values[0] > values[1]:
-            result += 1
-        for i in range(1, n - 1):
-            if values[i] > values[i - 1] and values[i] > values[i + 1]:
-                result += 1
-    print(result)
 
 
-if __name__ == '__main__':
 
-    main()
+# "Палиндром"
+
+# def main():
+#
+#     text = input()
+#     cleared_text = ''.join(
+#         char for char in text if char.isalpha() or char.isalnum()
+#     ).lower()
+#     result = cleared_text == cleared_text[::-1]
+#     print(result)
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
+
+
+# "Самое длинное слово"
+
+# def main():
+#
+#     l = int(input())
+#     text = list(input().split())
+#     max_length = 0
+#     max_word = ''
+#
+#     for word in text:
+#         current_len = len(word)
+#         if current_len > max_length:
+#             max_length = current_len
+#             max_word = word
+#
+#     print(max_word)
+#     print(max_length)
+
+
+# if __name__ == '__main__':
+#
+#     main()
+
+
+# "Хаотичность погоды"
+
+# def main():
+#
+#     n = int(input())
+#     values = list(map(int, input().split()))
+#     result = 0
+#     if n == 1:
+#         result += 1
+#     else:
+#         if values[n - 1] > values[n - 2]:
+#             result += 1
+#         if values[0] > values[1]:
+#             result += 1
+#         for i in range(1, n - 1):
+#             if values[i] > values[i - 1] and values[i] > values[i + 1]:
+#                 result += 1
+#     print(result)
+#
+#
+# if __name__ == '__main__':
+#
+#     main()
 
 # "Соседи"
 # def main():
