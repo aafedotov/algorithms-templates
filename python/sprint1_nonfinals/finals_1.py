@@ -1,42 +1,30 @@
-def get_min_distance(value, indexes):
-
-    right = len(indexes) - 1
-    if value < indexes[0]:
-        return indexes[0]
-    if value > indexes[right]:
-        return indexes[right]
-
-    left = 0
-    closer = left
-    while left <= right:
-        mid = left + (right - left) // 2
-        if value > indexes[mid]:
-            left = mid + 1
-        else:
-            right = mid - 1
-        if abs(indexes[mid] - value) < abs(indexes[closer] - value):
-            closer = mid
-    return abs(value - indexes[closer])
-
-
-
-
-
+# ID 68147413
 def main():
+    """Финальное задание 15-го спринта. А) Ближайший ноль."""
 
     n = int(input())
     numbers = list(map(int, list(input().split())))
-    null_indexes = []
+    null_indexes = [i for i in range(0, n) if numbers[i] == 0] # формируем список с индексами всех нулей
+    null_amount = len(null_indexes)
     null_distances = []
-    for i in range(0, n):
-        if numbers[i] == 0:
-            null_indexes.append(i)
-    for i in range(0, n):
-        if numbers[i] == 0:
+    current_null = 0
+    is_first_null = True # флаг для первого нуля, если True - мы не переходим к следующему индексу нуля
+    for i, number in enumerate(numbers):
+        if number == 0: # если встречается ноль, добавляем 0 в результирующий список, обновляем итератор current_null
             null_distances.append(0)
+            if current_null == 0 and is_first_null:
+                is_first_null = False
+            else:
+                current_null += 1
         else:
-            min_distance = get_min_distance(i, null_indexes)
-            null_distances.append(min_distance)
+            if current_null != null_amount - 1:
+                min_distance = min(
+                    abs(null_indexes[current_null] - i),
+                    abs(null_indexes[current_null + 1] - i)
+                ) # пока ноль не последний - мы выбираем между двух соседних нулей, который ближе
+                null_distances.append(min_distance)
+            else:
+                null_distances.append(abs(null_indexes[current_null] - i))
 
     print(' '.join(map(str, null_distances)))
 
