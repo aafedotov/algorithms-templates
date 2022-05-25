@@ -1,4 +1,4 @@
-# ID 68498053
+# ID 68595173
 
 class DeQueueSized:
     """Задание А. Класс, описывающий дек на кольцевом буфере."""
@@ -11,43 +11,57 @@ class DeQueueSized:
         self.tail = 0
         self.queue_size = 0
 
+    def is_full(self):
+        return self.max_size == self.queue_size
+
+    def is_empty(self):
+        return self.queue_size == 0
+
     def push_back(self, value):
 
-        if self.queue_size != self.max_size:
-            self.queue[self.tail] = value
-            self.queue_size += 1
-            self.tail = (self.tail + 1) % self.max_size
-            return None
-        return 'error'
+        if self.is_full():
+            raise IndexError
+        self.queue[self.tail] = value
+        self.queue_size += 1
+        self.tail = (self.tail + 1) % self.max_size
+        return None
 
     def push_front(self, value):
 
-        if self.queue_size != self.max_size:
-            self.queue[self.head - 1] = value
-            self.head = (self.head - 1) % self.max_size
-            self.queue_size += 1
-            return None
-        return 'error'
+        if self.is_full():
+            raise IndexError
+        self.queue[self.head - 1] = value
+        self.head = (self.head - 1) % self.max_size
+        self.queue_size += 1
+        return None
 
     def pop_front(self):
 
-        if self.queue_size != 0:
-            result = self.queue[self.head]
-            self.queue[self.head] = None
-            self.head = (self.head + 1) % self.max_size
-            self.queue_size -= 1
-            return result
-        return 'error'
+        if self.is_empty():
+            raise IndexError
+        result = self.queue[self.head]
+        self.queue[self.head] = None
+        self.head = (self.head + 1) % self.max_size
+        self.queue_size -= 1
+        return result
 
     def pop_back(self):
 
-        if self.queue_size != 0:
-            result = self.queue[self.tail - 1]
-            self.queue[self.tail - 1] = None
-            self.tail = (self.tail - 1) % self.max_size
-            self.queue_size -= 1
-            return result
-        return 'error'
+        if self.is_empty():
+            raise IndexError
+        result = self.queue[self.tail - 1]
+        self.queue[self.tail - 1] = None
+        self.tail = (self.tail - 1) % self.max_size
+        self.queue_size -= 1
+        return result
+
+
+COMMANDS = {
+    'push_front': DeQueueSized.push_front,
+    'push_back': DeQueueSized.push_back,
+    'pop_front': DeQueueSized.pop_front,
+    'pop_back': DeQueueSized.pop_back
+}
 
 
 def main():
@@ -57,18 +71,15 @@ def main():
     dequeue = DeQueueSized(size)
     for i in range(0, n):
         current_command = list(input().split())
-        if current_command[0] == 'push_front':
-            result = dequeue.push_front(current_command[1])
-            if result:
-                print(result)
-        if current_command[0] == 'push_back':
-            result = dequeue.push_back(current_command[1])
-            if result:
-                print(result)
-        if current_command[0] == 'pop_front':
-            print(dequeue.pop_front())
-        if current_command[0] == 'pop_back':
-            print(dequeue.pop_back())
+        try:
+            if len(current_command) == 1:
+                print(COMMANDS[current_command[0]](dequeue))
+            elif len(current_command) == 2:
+                COMMANDS[current_command[0]](dequeue, current_command[1])
+            else:
+                print('invalid command')
+        except IndexError:
+            print('error')
 
 
 if __name__ == '__main__':
