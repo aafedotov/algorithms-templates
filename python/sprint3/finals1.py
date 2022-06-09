@@ -1,44 +1,27 @@
-def array_recovery(arr, n):
+# ID: 68867789
+def broken_search(nums: list, target: int) -> int:
+    """Бинарный поиск в отсортированном массиве со смещением."""
 
-    recovered_array = []
-    i = 0
-    while i < n - 1:
-        if arr[i] > arr[i + 1]:
-            break
-        i += 1
-    recovered_array.extend(arr[i + 1: n])
-    recovered_array.extend(arr[0: i + 1])
-    return recovered_array, i
-
-
-def binary_search(arr, n, k):
-
-    mid = n // 2
     left = 0
-    right = n - 1
+    right = len(nums) - 1
 
-    while arr[mid] != k and left <= right:
+    while left <= right:
 
-        if k > arr[mid]:
-            left = mid + 1
-        else:
-            right = mid - 1
         mid = (left + right) // 2
 
-    if left > right:
-        return 'Искомое значение не найдено'
-
-    return mid
-
-
-def broken_search(nums: list, target: int) -> int:
-
-    n = len(nums)
-    recovered, index = array_recovery(nums, n)
-    binary_index = binary_search(recovered, n, target)
-    if binary_index >= index + 1:
-        return binary_index - index - 2
-    return binary_index + index + 1
+        if nums[mid] == target:
+            return mid
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target <= nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        else:
+            if nums[mid] <= target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid + 1
+    return -1
 
 
 def main():
@@ -52,4 +35,3 @@ def main():
 if __name__ == '__main__':
 
     main()
-
