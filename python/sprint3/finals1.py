@@ -1,4 +1,4 @@
-# ID: 68867789
+# ID: 68950776
 def broken_search(nums: list, target: int) -> int:
     """Бинарный поиск в отсортированном массиве со смещением."""
 
@@ -26,7 +26,6 @@ def broken_search(nums: list, target: int) -> int:
 
 def main():
 
-    n = int(input())
     k = int(input())
     arr = list(map(int, input().split()))
     print(broken_search(arr, k))

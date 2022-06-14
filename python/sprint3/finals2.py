@@ -11,16 +11,10 @@ class Student:
     def __gt__(self, other):
         """Определяем компаратор (>) для сравнения студентов."""
         if isinstance(other, Student):
-
-            if self.points > other.points:
-                return True
-            if self.points == other.points and self.penalty < other.penalty:
-                return True
-            if self.points == other.points and self.penalty == other.penalty:
-                return self.username < other.username
-
-            return False
-
+            return (
+                    (0 - self.points, self.penalty, self.username) <
+                    (0 - other.points, other.penalty, other.username)
+                    )
         else:
             raise ValueError('Недопустимый формат для сравнения.')
 
