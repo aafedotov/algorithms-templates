@@ -1,4 +1,4 @@
-# ID: 68950914
+# ID: 68957165
 class Student:
     """Определяем структуру данных для стажеров."""
 
@@ -12,8 +12,8 @@ class Student:
         """Определяем компаратор (>) для сравнения студентов."""
         if isinstance(other, Student):
             return (
-                    (0 - self.points, self.penalty, self.username) <
-                    (0 - other.points, other.penalty, other.username)
+                    (-self.points, self.penalty, self.username) <
+                    (-other.points, other.penalty, other.username)
                     )
         else:
             raise ValueError('Недопустимый формат для сравнения.')
